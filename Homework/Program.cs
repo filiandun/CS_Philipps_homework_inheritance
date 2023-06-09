@@ -1,18 +1,7 @@
-﻿/*
-
-
-
- * Задание 4
-Создать абстрактный базовый класс Worker (работника) с методом Print(). 
-Создайте четыре производных класса: President, Security, Manager, Engineer. 
-Переопределите метод Print() для вывода информации, соответствующей каждому типу работника.
- */
-
-
-namespace Homework
+﻿namespace Homework
 {
     /*
-     * Задание 1
+    * Задание 1
     Запрограммируйте класс Money (объект класса оперирует одной валютой) для работы с деньгами.
     В классе должны быть предусмотрены поле для хранения целой части денег (доллары, евро, гривны и т.д.) 
     и поле для хранения копеек (центы, евроценты, копейки и т.д.).
@@ -106,6 +95,7 @@ namespace Homework
             return $"{this.name} - {this.price}";
         }
     }
+
 
 
 
@@ -309,68 +299,132 @@ namespace Homework
     }
 
 
+
+
+
+    /*
+    * Задание 4
+    Создать абстрактный базовый класс Worker (работника) с методом Print(). 
+    Создайте четыре производных класса: President, Security, Manager, Engineer. 
+    Переопределите метод Print() для вывода информации, соответствующей каждому типу работника.
+    */
+
+    public abstract class Worker
+    {
+        protected string name;
+
+        protected Worker(string name)
+        {
+            this.name = name;
+        }
+
+        public abstract void Print();
+    }
+
+
+    public class President : Worker
+    {
+        public President(string name) : base(name) { }
+
+        public override void Print()
+        {
+            Console.WriteLine(this.name);
+        }
+    }
+
+    public class Security : Worker
+    {
+        public Security(string name) : base(name) { }
+
+        public override void Print()
+        {
+            Console.WriteLine(this.name);
+        }
+    }
+
+    public class Manager : Worker
+    {
+        public Manager(string name) : base(name) { }
+
+        public override void Print()
+        {
+            Console.WriteLine(this.name);
+        }
+    }
+
+    public class Engineer : Worker
+    {
+        public Engineer(string name) : base(name) { }
+
+        public override void Print()
+        {
+            Console.WriteLine(this.name);
+        }
+    }
+
+
+
     internal class Program
     {
         static void Main()
         {
             // ЗАДАНИЕ 1.
-            //Money m = new Money(211, 546); // не получится
-            //Console.WriteLine(m + "\n");
+            Money m = new Money(211, 546); // не получится
+            Console.WriteLine(m + "\n");
 
-            //Money money = new Money(352, 32);
-            //Console.ForegroundColor = ConsoleColor.Blue; Console.WriteLine($"ВСЕГО MONEY:\t\t{money}\n"); Console.ResetColor();
-
-
-            //// оператор -
-            //money -= 4294967296; // не получится
-            //Console.WriteLine($"Money - 4294967296:\t{money}");
-
-            //money -= 0.3523m; // и так тоже не получится
-            //Console.WriteLine($"Money - 0.3523m:\t{money}\n");
+            Money money = new Money(352, 32);
+            Console.ForegroundColor = ConsoleColor.Blue; Console.WriteLine($"ВСЕГО MONEY:\t\t{money}\n"); Console.ResetColor();
 
 
-            //money -= 10;
-            //Console.WriteLine($"Money - 10:\t\t{money}");
+            // оператор -
+            money -= 4294967296; // не получится
+            Console.WriteLine($"Money - 4294967296:\t{money}");
 
-            //money -= 0.28m; // decimal - точный тип данных для десятичных чисел, иначе вычисления некорректны
-            //Console.WriteLine($"Money - 0.28:\t\t{money}");
-
-            //money -= (decimal) 42.04;
-            //Console.WriteLine($"Money - 42.04:\t\t{money}\n");
+            money -= 0.3523m; // и так тоже не получится
+            Console.WriteLine($"Money - 0.3523m:\t{money}\n");
 
 
-            //// оператор +
-            //money += ulong.MaxValue; // не получится
-            //Console.WriteLine($"Money + {ulong.MaxValue}:\t\t{money}");
+            money -= 10;
+            Console.WriteLine($"Money - 10:\t\t{money}");
 
-            //money += decimal.MaxValue; // и так тоже не получится
-            //Console.WriteLine($"Money + {decimal.MaxValue}:\t{money}\n");
+            money -= 0.28m; // decimal - точный тип данных для десятичных чисел, иначе вычисления некорректны
+            Console.WriteLine($"Money - 0.28:\t\t{money}");
 
-
-            //money += 10;
-            //Console.WriteLine($"Money + 10:\t\t{money}");
-
-            //money += 0.28m;
-            //Console.WriteLine($"Money + 0.28:\t\t{money}");
-
-            //money += (decimal)42.04;
-            //Console.WriteLine($"Money + 42.04:\t\t{money}");
+            money -= (decimal)42.04;
+            Console.WriteLine($"Money - 42.04:\t\t{money}\n");
 
 
-            //// класс Product
-            //Product[] products = 
-            //    { 
-            //    new Product("Хлеб", new Money(20, 99)),
-            //    new Product("Молоко", new Money(106, 49)),
-            //    new Product("Сосиски", new Money(356, 19))
-            //    };
+            // оператор +
+            money += ulong.MaxValue; // не получится
+            Console.WriteLine($"Money + {ulong.MaxValue}:\t\t{money}");
 
-            //Console.WriteLine("\n\n\nПродукты: ");
-            //foreach (Product product in products)
-            //{
-            //    Console.WriteLine(product);
-            //}
+            money += decimal.MaxValue; // и так тоже не получится
+            Console.WriteLine($"Money + {decimal.MaxValue}:\t{money}\n");
 
+
+            money += 10;
+            Console.WriteLine($"Money + 10:\t\t{money}");
+
+            money += 0.28m;
+            Console.WriteLine($"Money + 0.28:\t\t{money}");
+
+            money += (decimal)42.04;
+            Console.WriteLine($"Money + 42.04:\t\t{money}");
+
+
+            // класс Product
+            Product[] products =
+                {
+                new Product("Хлеб", new Money(20, 99)),
+                new Product("Молоко", new Money(106, 49)),
+                new Product("Сосиски", new Money(356, 19))
+                };
+
+            Console.WriteLine("\n\n\nПродукты: ");
+            foreach (Product product in products)
+            {
+                Console.WriteLine(product);
+            }
 
 
 
@@ -396,24 +450,41 @@ namespace Homework
 
 
 
-
             // ЗАДАНИЕ 3.
-            MusicalInstrument[] musicalInstruments =
-                {
-                new Violin("Скрипка"),
-                new Trombone("Тромбон"),
-                new Ukulele("Укулеле")
-                };
+            //MusicalInstrument[] musicalInstruments =
+            //    {
+            //    new Violin("Скрипка"),
+            //    new Trombone("Тромбон"),
+            //    new Ukulele("Укулеле")
+            //    };
 
-            Console.WriteLine("Музыкальные инструменты: ");
-            foreach (MusicalInstrument musicalInstrument in musicalInstruments)
-            {
-                musicalInstrument.Show();
-                musicalInstrument.Desc();
-                musicalInstrument.History();
-                musicalInstrument.Sound();
-                Console.WriteLine("\n");
-            }
+            //Console.WriteLine("Музыкальные инструменты: ");
+            //foreach (MusicalInstrument musicalInstrument in musicalInstruments)
+            //{
+            //    musicalInstrument.Show();
+            //    musicalInstrument.Desc();
+            //    musicalInstrument.History();
+            //    musicalInstrument.Sound();
+            //    Console.WriteLine("\n");
+            //}
+
+
+
+
+            // ЗАДАНИЕ 4.
+            //Worker[] workers =
+            //    {
+            //        new President("Президент"),
+            //        new Security("Охранник"),
+            //        new Manager("Менеджер"),
+            //        new Engineer("Инженер")
+            //    };
+
+            //Console.WriteLine("Работники: ");
+            //foreach (Worker worker in workers)
+            //{
+            //    worker.Print();
+            //}
         }
     }
 }
